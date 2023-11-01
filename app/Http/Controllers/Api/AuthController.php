@@ -33,6 +33,22 @@ class AuthController extends Controller
         }
     }
 
+    public function logout(Request $request){
+        try {
+            JWTAuth::invalidate(JWTAuth::parseToken($request->token));
+            return response()->json([
+                'success' => true,
+                'message' => "Logout Success"
+
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e
+            ]);
+        }
+    }
+
     public function getMe(Request $request)
     {
         if(Auth::user()){
