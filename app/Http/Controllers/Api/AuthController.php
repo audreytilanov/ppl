@@ -103,7 +103,7 @@ class AuthController extends Controller
 
     public function getPlSqlByNim(){
         try{
-            $record =  AkarKuadratSql::where('user', Auth::user()->name)->orderBy('id', 'DESC')->get();
+            $record =  AkarKuadratSql::where('user', Auth::user()->email)->orderBy('id', 'DESC')->get();
 
             return response()->json([
                 'success' => true,
@@ -121,7 +121,7 @@ class AuthController extends Controller
 
     public function getGolangByNim(){
         try{
-            $record =  AkarKuadratGolang::where('user', Auth::user()->name)->orderBy('id', 'DESC')->get();
+            $record =  AkarKuadratGolang::where('user', Auth::user()->email)->orderBy('id', 'DESC')->get();
 
             return response()->json([
                 'success' => true,
@@ -139,7 +139,7 @@ class AuthController extends Controller
 
     public function aggregatePlSqlByNim(){
         try{
-            $record =  AkarKuadratGolang::where('user', Auth::user()->name)->selectRaw('COUNT(*) as count, AVG(excecution) as avg, MAX(excecution) as max, MIN(excecution) as min')
+            $record =  AkarKuadratGolang::where('user', Auth::user()->email)->selectRaw('COUNT(*) as count, AVG(excecution) as avg, MAX(excecution) as max, MIN(excecution) as min')
             ->first();
 
             return response()->json([
@@ -158,7 +158,7 @@ class AuthController extends Controller
 
     public function aggregateGolangByNim(){
         try{
-            $record =  AkarKuadratGolang::where('user', Auth::user()->name)->selectRaw('COUNT(*) as count, AVG(excecution) as avg, MAX(excecution) as max, MIN(excecution) as min')
+            $record =  AkarKuadratGolang::where('user', Auth::user()->email)->selectRaw('COUNT(*) as count, AVG(excecution) as avg, MAX(excecution) as max, MIN(excecution) as min')
             ->first();
 
             return response()->json([
